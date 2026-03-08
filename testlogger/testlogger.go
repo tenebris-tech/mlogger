@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/PivotLLM/mlogger"
+	"github.com/tenebris-tech/mlogger"
 )
 
 // Logger routes all log output through testing.T so messages appear only on
