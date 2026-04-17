@@ -25,11 +25,11 @@ func (n *NullLogger) Noticef(string, ...any)   {}
 func (n *NullLogger) Warningf(string, ...any)  {}
 func (n *NullLogger) Errorf(string, ...any)    {}
 func (n *NullLogger) Fatalf(string, ...any)    {}
-func (n *NullLogger) DebugFields(...any)       {}
-func (n *NullLogger) InfoFields(...any)        {}
-func (n *NullLogger) NoticeFields(...any)      {}
-func (n *NullLogger) WarningFields(...any)     {}
-func (n *NullLogger) ErrorFields(...any)       {}
-func (n *NullLogger) FatalFields(...any)       {}
+func (n *NullLogger) DebugFields(string, ...any)   {}
+func (n *NullLogger) InfoFields(string, ...any)    {}
+func (n *NullLogger) NoticeFields(string, ...any)  {}
+func (n *NullLogger) WarningFields(string, ...any) {}
+func (n *NullLogger) ErrorFields(string, ...any)   {}
+func (n *NullLogger) FatalFields(string, ...any)   {}
 func (n *NullLogger) FatalExit()               {}
 func (n *NullLogger) Close()                   {}

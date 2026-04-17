@@ -58,11 +58,23 @@ func (m *MemoryLogger) Noticef(f string, v ...any)   { m.add(fmt.Sprintf("NOTICE
 func (m *MemoryLogger) Warningf(f string, v ...any)  { m.add(fmt.Sprintf("WARNING: "+f, v...)) }
 func (m *MemoryLogger) Errorf(f string, v ...any)    { m.add(fmt.Sprintf("ERROR: "+f, v...)) }
 func (m *MemoryLogger) Fatalf(f string, v ...any)    { m.add(fmt.Sprintf("FATAL: "+f, v...)) }
-func (m *MemoryLogger) DebugFields(v ...any)         { m.add("DEBUG: " + FormatFields(v...)) }
-func (m *MemoryLogger) InfoFields(v ...any)          { m.add("INFO: " + FormatFields(v...)) }
-func (m *MemoryLogger) NoticeFields(v ...any)        { m.add("NOTICE: " + FormatFields(v...)) }
-func (m *MemoryLogger) WarningFields(v ...any)       { m.add("WARNING: " + FormatFields(v...)) }
-func (m *MemoryLogger) ErrorFields(v ...any)         { m.add("ERROR: " + FormatFields(v...)) }
-func (m *MemoryLogger) FatalFields(v ...any)         { m.add("FATAL: " + FormatFields(v...)) }
+func (m *MemoryLogger) DebugFields(msg string, v ...any) {
+	m.add("DEBUG: " + FormatMessage(msg, v...))
+}
+func (m *MemoryLogger) InfoFields(msg string, v ...any) {
+	m.add("INFO: " + FormatMessage(msg, v...))
+}
+func (m *MemoryLogger) NoticeFields(msg string, v ...any) {
+	m.add("NOTICE: " + FormatMessage(msg, v...))
+}
+func (m *MemoryLogger) WarningFields(msg string, v ...any) {
+	m.add("WARNING: " + FormatMessage(msg, v...))
+}
+func (m *MemoryLogger) ErrorFields(msg string, v ...any) {
+	m.add("ERROR: " + FormatMessage(msg, v...))
+}
+func (m *MemoryLogger) FatalFields(msg string, v ...any) {
+	m.add("FATAL: " + FormatMessage(msg, v...))
+}
 func (m *MemoryLogger) FatalExit()                   { m.add("FATAL: FatalExit called") }
 func (m *MemoryLogger) Close()                       {}

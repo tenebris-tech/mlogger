@@ -47,35 +47,43 @@ func FormatFields(args ...any) string {
 	return sb.String()
 }
 
-// DebugFields logs a structured debug message as logfmt key=value pairs.
-func (m *MLogger) DebugFields(args ...any) {
+// FormatMessage formats a message string followed by logfmt key=value pairs.
+func FormatMessage(msg string, args ...any) string {
+	if len(args) == 0 {
+		return msg
+	}
+	return msg + " " + FormatFields(args...)
+}
+
+// DebugFields logs a structured debug message with logfmt key=value pairs.
+func (m *MLogger) DebugFields(msg string, args ...any) {
 	if m.debug {
-		m.writeLog("DEBUG", FormatFields(args...))
+		m.writeLog("DEBUG", FormatMessage(msg, args...))
 	}
 }
 
-// InfoFields logs a structured informational message as logfmt key=value pairs.
-func (m *MLogger) InfoFields(args ...any) {
-	m.writeLog("INFO", FormatFields(args...))
+// InfoFields logs a structured informational message with logfmt key=value pairs.
+func (m *MLogger) InfoFields(msg string, args ...any) {
+	m.writeLog("INFO", FormatMessage(msg, args...))
 }
 
-// NoticeFields logs a structured notice message as logfmt key=value pairs.
-func (m *MLogger) NoticeFields(args ...any) {
-	m.writeLog("NOTICE", FormatFields(args...))
+// NoticeFields logs a structured notice message with logfmt key=value pairs.
+func (m *MLogger) NoticeFields(msg string, args ...any) {
+	m.writeLog("NOTICE", FormatMessage(msg, args...))
 }
 
-// WarningFields logs a structured warning message as logfmt key=value pairs.
-func (m *MLogger) WarningFields(args ...any) {
-	m.writeLog("WARNING", FormatFields(args...))
+// WarningFields logs a structured warning message with logfmt key=value pairs.
+func (m *MLogger) WarningFields(msg string, args ...any) {
+	m.writeLog("WARNING", FormatMessage(msg, args...))
 }
 
-// ErrorFields logs a structured error message as logfmt key=value pairs.
-func (m *MLogger) ErrorFields(args ...any) {
-	m.writeLog("ERROR", FormatFields(args...))
+// ErrorFields logs a structured error message with logfmt key=value pairs.
+func (m *MLogger) ErrorFields(msg string, args ...any) {
+	m.writeLog("ERROR", FormatMessage(msg, args...))
 }
 
-// FatalFields logs a structured fatal message as logfmt key=value pairs, then exits.
-func (m *MLogger) FatalFields(args ...any) {
-	m.writeLog("FATAL", FormatFields(args...))
+// FatalFields logs a structured fatal message with logfmt key=value pairs, then exits.
+func (m *MLogger) FatalFields(msg string, args ...any) {
+	m.writeLog("FATAL", FormatMessage(msg, args...))
 	m.FatalExit()
 }

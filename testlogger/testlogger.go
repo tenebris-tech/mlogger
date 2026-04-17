@@ -40,11 +40,23 @@ func (l *Logger) Noticef(f string, v ...any)   { l.T.Log("[NOTICE] " + fmt.Sprin
 func (l *Logger) Warningf(f string, v ...any)  { l.T.Log("[WARNING] " + fmt.Sprintf(f, v...)) }
 func (l *Logger) Errorf(f string, v ...any)    { l.T.Log("[ERROR] " + fmt.Sprintf(f, v...)) }
 func (l *Logger) Fatalf(f string, v ...any)    { l.T.Fatalf("[FATAL] "+f, v...) }
-func (l *Logger) DebugFields(v ...any)         { l.T.Log("[DEBUG] " + mlogger.FormatFields(v...)) }
-func (l *Logger) InfoFields(v ...any)          { l.T.Log("[INFO] " + mlogger.FormatFields(v...)) }
-func (l *Logger) NoticeFields(v ...any)        { l.T.Log("[NOTICE] " + mlogger.FormatFields(v...)) }
-func (l *Logger) WarningFields(v ...any)       { l.T.Log("[WARNING] " + mlogger.FormatFields(v...)) }
-func (l *Logger) ErrorFields(v ...any)         { l.T.Log("[ERROR] " + mlogger.FormatFields(v...)) }
-func (l *Logger) FatalFields(v ...any)         { l.T.Fatal("[FATAL] " + mlogger.FormatFields(v...)) }
+func (l *Logger) DebugFields(msg string, v ...any) {
+	l.T.Log("[DEBUG] " + mlogger.FormatMessage(msg, v...))
+}
+func (l *Logger) InfoFields(msg string, v ...any) {
+	l.T.Log("[INFO] " + mlogger.FormatMessage(msg, v...))
+}
+func (l *Logger) NoticeFields(msg string, v ...any) {
+	l.T.Log("[NOTICE] " + mlogger.FormatMessage(msg, v...))
+}
+func (l *Logger) WarningFields(msg string, v ...any) {
+	l.T.Log("[WARNING] " + mlogger.FormatMessage(msg, v...))
+}
+func (l *Logger) ErrorFields(msg string, v ...any) {
+	l.T.Log("[ERROR] " + mlogger.FormatMessage(msg, v...))
+}
+func (l *Logger) FatalFields(msg string, v ...any) {
+	l.T.Fatal("[FATAL] " + mlogger.FormatMessage(msg, v...))
+}
 func (l *Logger) FatalExit()                   { l.T.Fatal("[FATAL EXIT]") }
 func (l *Logger) Close()                       {}
